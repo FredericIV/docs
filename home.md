@@ -9,4 +9,4 @@ dateCreated: 2023-05-09T17:48:09.552Z
 ---
 
 # Home
-There's nothing here yet.
+Welcome! This is the storage repo for artifacts that may be needed in the future, or are to be communicated to someone else.
