@@ -1,0 +1,58 @@
+<!--
+title: Keycloak
+description: 
+published: true
+date: 2023-05-09T18:47:02.830Z
+tags: docker, services
+editor: ckeditor
+dateCreated: 2023-05-09T18:47:00.094Z
+-->
+
+<h1>Keycloak</h1>
+<h2>Description</h2>
+<p>TBD</p>
+<h2>Configuration</h2>
+<pre><code class="language-plaintext">version: "3"
+services:
+  keycloak:
+    image:  quay.io/keycloak/keycloak:latest
+    command: --verbose start
+    container_name: keycloak
+    restart: unless-stopped
+    ports:
+      - 443:443
+    depends_on:
+      - postgres
+      - cloudflared
+      - openldap
+    environment:
+      - KC_HTTP_ENABLED=false
+      - KC_HTTP_PORT=80
+      - KC_HTTPS_ENABLED=true
+      - KC_HTTPS_CERTIFICATE_FILE=/etc/x509/https/keycloak.crt
+      - KC_HTTPS_CERTIFICATE_KEY_FILE=/etc/x509/https/keycloak.key
+      - KC_HTTPS_PORT=443
+      - KC_PROXY=reencrypt
+      - KC_HOSTNAME=keycloak.fabiv.pw
+      - KC_DB=postgres
+      - KC_DB_URL_HOST=postgres
+      - KC_DB_USERNAME=postgres
+      - KC_DB_PASSWORD=PASSWORD
+      - KC_DB_URL_DATABASE=postgres
+      - KC_FEATURES=recovery-codes
+      - KEYCLOAK_ADMIN=USERNAME
+      - KEYCLOAK_ADMIN_PASSWORD=PASSWORD
+    volumes:
+      - /var/home/core/client.keytab:/client.keytab:z
+      - /var/home/core/certs/keycloak.crt:/etc/x509/https/keycloak.crt:z
+      - /var/home/core/certs/keycloak.key:/etc/x509/https/keycloak.key:z
+      - /var/home/core/certs/root_ca.crt:/etc/x509/https/root_ca.crt:z
+
+  postgres:
+    image: docker.io/postgres
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=PASSWORD
+    volumes:
+      - postgres:/var/lib/postgresql/data</code></pre>
