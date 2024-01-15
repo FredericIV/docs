@@ -2,7 +2,7 @@
 title: Projecs
 description: 
 published: true
-date: 2024-01-15T21:32:30.896Z
+date: 2024-01-15T21:33:08.462Z
 tags: docker
 editor: markdown
 dateCreated: 2024-01-15T20:47:45.197Z
@@ -24,6 +24,7 @@ dateCreated: 2024-01-15T20:47:45.197Z
 - Implement CI/CD (Concourse CI)
   - Auto-build docker containers
   - Migrate from Wiki.js to mkdocs-material
+- Bare-metal openstack cluster
 ## Complete
 - Graphviz previewer
 - K8s management container
