@@ -2,7 +2,7 @@
 title: Projecs
 description: 
 published: true
-date: 2024-01-15T20:49:10.415Z
+date: 2024-01-15T20:49:19.818Z
 tags: docker
 editor: markdown
 dateCreated: 2024-01-15T20:47:45.197Z
@@ -13,11 +13,6 @@ dateCreated: 2024-01-15T20:47:45.197Z
 - HA DHCP & DNS
 - SSH Certificates
 - Vyos Config Generation
-### SSH Certificates
-- [X] CA stood up
-- [ ] Distribute host certificates
-- [ ] Configure servers' sshd to accept ssh certificates
-
 ## In Consideration
 - Router OS to replace Vyos
   - VPP & FRR based
