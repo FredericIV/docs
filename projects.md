@@ -2,7 +2,7 @@
 title: Projecs
 description: 
 published: true
-date: 2024-01-15T20:51:23.492Z
+date: 2024-01-15T21:04:03.617Z
 tags: docker
 editor: markdown
 dateCreated: 2024-01-15T20:47:45.197Z
