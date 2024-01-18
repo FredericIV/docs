@@ -2,7 +2,7 @@
 title: Projecs
 description: 
 published: true
-date: 2024-01-18T18:29:10.776Z
+date: 2024-01-18T18:31:53.029Z
 tags: docker
 editor: markdown
 dateCreated: 2024-01-15T20:47:45.197Z
@@ -18,15 +18,19 @@ dateCreated: 2024-01-15T20:47:45.197Z
 - Router OS to replace Vyos
   - VPP & FRR based
   - HA Capable
-  - Built in DHCP & DNS
+  - Built in DHCP & DNS (deps on [HA DHCP & DNS](/projects/ha-dhcp-dns))
   - Firewall vs ACL f/ VPP?
   - Declaritive config syntax
 - Implement CI/CD (Concourse CI)
   - Auto-build docker containers
   - Migrate from Wiki.js to mkdocs-material
+  - deps on DNS integration
 - Bare-metal openstack cluster
 - Migrate to Dex as OIDC intermediary for k8s
+  - deps on DNS integration
 - Integrate k8s DNS & int DNS
+  - [External-DNS](https://github.com/kubernetes-sigs/external-dns/tree/master)
+  - deps on [HA DHCP & DNS](/projects/ha-dhcp-dns)
 ## Complete
 - Graphviz previewer
 - K8s management container
