@@ -2,23 +2,23 @@
 title: Projecs
 description: 
 published: true
-date: 2024-01-18T18:32:48.778Z
-tags: docker
+date: 2024-01-18T18:33:36.978Z
+tags: 
 editor: markdown
 dateCreated: 2024-01-15T20:47:45.197Z
 ---
 
 # Projects
 ## In Progres
-- [HA DHCP & DNS](./ha-dhcp-dns)
-- [SSH Certificates](./ssh-certs)
-- [Vyos Config Generation](./vyos)
+- [HA DHCP & DNS](/projects/ha-dhcp-dns)
+- [SSH Certificates](/projects/ssh-certs)
+- [Vyos Config Generation](/projects/vyos)
   - GA depends on HA DHCP & DNS
 ## In Consideration
 - Router OS to replace Vyos
   - VPP & FRR based
   - HA Capable
-  - Built in DHCP & DNS (deps on [HA DHCP & DNS](./ha-dhcp-dns))
+  - Built in DHCP & DNS (deps on [HA DHCP & DNS](/projects/ha-dhcp-dns))
   - Firewall vs ACL f/ VPP?
   - Declaritive config syntax
 - Implement CI/CD (Concourse CI)
@@ -30,7 +30,7 @@ dateCreated: 2024-01-15T20:47:45.197Z
   - deps on DNS integration
 - Integrate k8s DNS & int DNS
   - [External-DNS](https://github.com/kubernetes-sigs/external-dns/tree/master)
-  - deps on [HA DHCP & DNS](./ha-dhcp-dns)
+  - deps on [HA DHCP & DNS](/projects/ha-dhcp-dns)
 ## Complete
 - Graphviz previewer
 - K8s management container
