@@ -2,7 +2,7 @@
 title: SSH Certificates
 description: 
 published: true
-date: 2024-02-04T18:20:06.331Z
+date: 2024-02-04T18:21:47.353Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T21:06:14.952Z
@@ -20,57 +20,7 @@ dateCreated: 2024-01-15T21:06:14.952Z
 
 ## Details
 ### CA stood up
-### Add CA to ca store
-#### Debian
-```bash
-pushd /tmp
-export ROOT_ADDR="https://ca.fabiv.pw/roots.pem"
-export CERT_NAME="ca.fabiv.pw"
-curl -ko root.pem ${ROOT_ADDR}
-openssl x509 -inform PEM -in root.pem -out ${CERT_NAME}.crt
-rm root.pem
-if [ "$EUID" -eq 0 ]
-then
-    export ESCALATE=""
-elif command -v sudo &> /dev/null
-    export ESCALATE="sudo"
-elif command -v doas &> /dev/null
-    export ESCALATE="doas"
-else
-    echo "What is going on here??? Neither sudo nor doas found."
-fi
-${ESCALATE} mv ${CERT_NAME}.crt /usr/local/share/ca-certificates/
-
-```
-#### Alpine
-```bash
-export ROOT_ADDR="https://ca.fabiv.pw/roots.pem"
-export CERT_NAME="ca.fabiv.pw"
-pushd /tmp
-curl -ko root.pem ${ROOT_ADDR}
-openssl x509 -inform PEM -in root.pem -out ${CERT_NAME}.crt
-rm root.pem
-${ESCALATE} mv ${CERT_NAME}.crt /usr/local/share/ca-certificates/
-${ESCALATE} update-ca-certificates
-popd
-```
-#### Fedora/RHEL
-```bash
-export ROOT_ADDR="https://ca.fabiv.pw/roots.pem"
-export CERT_NAME="ca.fabiv.pw"
-if [ "$EUID" -eq 0 ]
-then
-    export ESCALATE=""
-elif command -v sudo &> /dev/null
-    export ESCALATE="sudo"
-elif command -v doas &> /dev/null
-    export ESCALATE="doas"
-else
-    echo "What is going on here??? Neither sudo nor doas found."
-fi
-${ESCALATE} curl -sko /etc/pki/ca-trust/source/anchors/${CERT_NAME}.pem ${ROOT_ADDR}
-${ESCALATE} update-ca-trust
-```
+### Add CA to store
 
 ```bash
 #!/bin/bash
@@ -120,6 +70,6 @@ case $(. /etc/os-release && echo $ID) in
     openssl x509 -inform PEM -in root.pem -out ${CERT_NAME}.crt
     rm root.pem
     ${ESCALATE} mv ${CERT_NAME}.crt /usr/local/share/ca-certificates/
-    ${ESCALATE} update-ca-certificates
+    ${ESCALATE} dpkg-reconfigure ca-certificates
     
 ```
