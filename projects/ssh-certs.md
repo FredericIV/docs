@@ -2,7 +2,7 @@
 title: SSH Certificates
 description: 
 published: true
-date: 2024-02-04T18:21:59.143Z
+date: 2024-02-04T18:42:35.331Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T21:06:14.952Z
@@ -42,7 +42,8 @@ then
   echo "Missing curl"
   exit 1
 fi
-
+export ID=$(. /etc/os-release && echo $ID)
+if [[ $(. /etc/os-release && echo $ID_LIKE) ]]; then export ID=$(. /etc/os-release && echo $ID_LIKE); fi
 case $(. /etc/os-release && echo $ID) in
   fedora)
     ${ESCALATE} curl -sko /etc/pki/ca-trust/source/anchors/${CERT_NAME}.pem ${ROOT_ADDR}
@@ -59,6 +60,7 @@ case $(. /etc/os-release && echo $ID) in
     rm root.pem
     ${ESCALATE} mv ${CERT_NAME}.crt /usr/local/share/ca-certificates/
     ${ESCALATE} update-ca-certificates
+    popd
   debian)
     if [[ $(command -v openssl &> /dev/null) -ne 0 ]]
     then
@@ -71,5 +73,5 @@ case $(. /etc/os-release && echo $ID) in
     rm root.pem
     ${ESCALATE} mv ${CERT_NAME}.crt /usr/local/share/ca-certificates/
     ${ESCALATE} dpkg-reconfigure ca-certificates
-    
+    popd
 ```
