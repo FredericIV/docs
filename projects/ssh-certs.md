@@ -2,7 +2,7 @@
 title: SSH Certificates
 description: 
 published: true
-date: 2024-02-04T19:23:42.571Z
+date: 2024-02-04T19:24:11.922Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T21:06:14.952Z
@@ -53,7 +53,7 @@ case ${ID} in
   fedora)
     export PKIDIR="/etc/pki/ca-trust/source/anchors"
     if [ ! -d ${PKIDIR} ]; then
-      mkdir ${PKIDIR}
+      mkdir -p ${PKIDIR}
     fi
     ${ESCALATE} curl -sko ${PKIDIR}/${CERT_NAME}.pem ${ROOT_ADDR}
     ${ESCALATE} update-ca-trust
