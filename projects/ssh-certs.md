@@ -2,7 +2,7 @@
 title: SSH Certificates
 description: 
 published: true
-date: 2024-02-04T18:21:47.353Z
+date: 2024-02-04T18:21:59.143Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T21:06:14.952Z
@@ -20,7 +20,7 @@ dateCreated: 2024-01-15T21:06:14.952Z
 
 ## Details
 ### CA stood up
-### Add CA to store
+### Add CA to system trust
 
 ```bash
 #!/bin/bash
