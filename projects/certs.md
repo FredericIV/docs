@@ -1,8 +1,8 @@
 ---
-title: SSH Certificates
+title: Certificates
 description: 
 published: true
-date: 2024-02-04T19:41:47.141Z
+date: 2024-02-04T19:43:47.240Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T21:06:14.952Z
