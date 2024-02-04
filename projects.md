@@ -1,8 +1,8 @@
 ---
-title: Projecs
+title: Projects
 description: 
 published: true
-date: 2024-01-18T18:33:36.978Z
+date: 2024-02-04T19:42:57.195Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T20:47:45.197Z
