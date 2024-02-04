@@ -2,7 +2,7 @@
 title: SSH Certificates
 description: 
 published: true
-date: 2024-02-04T19:24:11.922Z
+date: 2024-02-04T19:35:57.709Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T21:06:14.952Z
@@ -20,6 +20,118 @@ dateCreated: 2024-01-15T21:06:14.952Z
 
 ## Details
 ### CA stood up
+/etc/step-ca/config/ca.json
+```json
+{
+	"root": "/etc/step-ca/certs/root_ca.crt",
+	"crt": "/etc/step-ca/certs/intermediate_ca.crt",
+	"key": "pkcs11:id=06",
+	"federatedRoots": [],
+	"kms": {
+		"type": "pkcs11",
+		"uri": "pkcs11:module-path=/usr/lib/x86_64-linux-gnu/libykcs11.so;slot-id=0?pin-value=XXXXXX"
+	},
+	"address": ":443",
+	"insecureAddress": "",
+	"dnsNames": [
+		"ca.fabiv.pw"
+	],
+	"ssh": {
+ 		"hostKey": "pkcs11:id=07",
+		"userKey": "pkcs11:id=08"
+	},
+	"logger": {
+		"format": "text"
+	},
+	"db": {
+		"type": "badgerv2",
+		"dataSource": "/etc/step-ca/db",
+		"badgerFileLoadingMode": ""
+	},
+	"authority": {
+		"enableAdmin": true
+	},
+	"tls": {
+		"cipherSuites": [
+			"TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256",
+			"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256"
+		],
+		"minVersion": 1.2,
+		"maxVersion": 1.3,
+		"renegotiation": false
+	}
+}
+```
+/etc/step-ca/config/defaults.json
+```json
+{
+	"ca-url": "https://ca.fabiv.pw",
+	"ca-config": "/etc/step-ca/config/ca.json",
+	"fingerprint": "12452d6e3f40376ef775c8a0a821b8b91205d07c5249995f04da610c2c0e2e2b",
+	"root": "/etc/step-ca/certs/root_ca.crt"
+}
+```
+/etc/systemd/system/step-ca.service
+```ini
+[Unit]
+Description=step-ca service
+Documentation=https://smallstep.com/docs/step-ca
+Documentation=https://smallstep.com/docs/step-ca/certificate-authority-server-production
+After=network-online.target
+Wants=network-online.target
+ConditionFileNotEmpty=/etc/step-ca/config/ca.json
+After=smartcard.target
+
+[Service]
+Type=simple
+User=step
+Group=step
+Environment=STEPPATH=/etc/step-ca
+WorkingDirectory=/etc/step-ca
+ExecStart=/usr/local/bin/step-ca config/ca.json
+ExecReload=/bin/kill --signal HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+StartLimitInterval=30
+StartLimitBurst=3
+
+; Process capabilities & privileges
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+SecureBits=keep-caps
+NoNewPrivileges=yes
+
+; Sandboxing
+; This sandboxing works with YubiKey PIV (via pcscd HTTP API), but it is likely
+; too restrictive for PKCS#11 HSMs.
+;
+; NOTE: Comment out the rest of this section for troubleshooting.
+ProtectSystem=full
+ProtectHome=true
+RestrictNamespaces=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+PrivateTmp=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectKernelTunables=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+LockPersonality=true
+RestrictSUIDSGID=true
+RemoveIPC=true
+RestrictRealtime=true
+;PrivateDevices=true ; We need to access the yubikey from the host
+SystemCallFilter=@system-service
+SystemCallArchitectures=native
+MemoryDenyWriteExecute=true
+ReadWriteDirectories=/etc/step-ca/db
+
+
+[Install]
+WantedBy=smartcard.target
+
+```
 ### Add CA to system trust
 > Make sure the host can reach the server with the certificate (generally the CA)!
 {.is-warning}
