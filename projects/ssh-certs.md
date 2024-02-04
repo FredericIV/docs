@@ -2,7 +2,7 @@
 title: SSH Certificates
 description: 
 published: true
-date: 2024-02-04T19:40:47.917Z
+date: 2024-02-04T19:41:47.141Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T21:06:14.952Z
@@ -13,7 +13,7 @@ dateCreated: 2024-01-15T21:06:14.952Z
 
 # Status
 - [X] CA stood up
-- [X] Add CA to ca store
+- [X] Add CA to system trust store
 - [ ] Create host certificates
 - [ ] Configure servers' sshd to accept ssh certificates
 
@@ -133,7 +133,7 @@ ReadWriteDirectories=/etc/step-ca/db
 WantedBy=smartcard.target
 
 ```
-## Add CA to system trust
+## Add CA to system trust store
 > Make sure the host can reach the server with the certificate (generally the CA)!
 {.is-warning}
 
