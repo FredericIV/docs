@@ -2,7 +2,7 @@
 title: Projects
 description: 
 published: true
-date: 2024-02-04T19:42:57.195Z
+date: 2024-02-04T19:43:20.004Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T20:47:45.197Z
@@ -11,7 +11,7 @@ dateCreated: 2024-01-15T20:47:45.197Z
 # Projects
 ## In Progres
 - [HA DHCP & DNS](/projects/ha-dhcp-dns)
-- [SSH Certificates](/projects/ssh-certs)
+- [Certificates](/projects/certs)
 - [Vyos Config Generation](/projects/vyos)
   - GA depends on HA DHCP & DNS
 ## In Consideration
