@@ -2,7 +2,7 @@
 title: SSH Certificates
 description: 
 published: true
-date: 2024-02-04T19:14:14.885Z
+date: 2024-02-04T19:23:42.571Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T21:06:14.952Z
@@ -87,8 +87,6 @@ case ${ID} in
     ${ESCALATE} mv ${CERT_NAME}.crt /usr/local/share/ca-certificates/
     ${ESCALATE} dpkg-reconfigure ca-certificates
     popd
-    echo -n "You should see your cert here:"
-    ls /etc/ssl/certs | grep -i ${CERT_NAME}
     ;;
 esac
 ```
