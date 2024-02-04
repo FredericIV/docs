@@ -2,7 +2,7 @@
 title: Certificates
 description: 
 published: true
-date: 2024-02-04T19:43:47.240Z
+date: 2024-02-04T19:43:56.018Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T21:06:14.952Z
@@ -14,7 +14,7 @@ dateCreated: 2024-01-15T21:06:14.952Z
 # Status
 - [X] CA stood up
 - [X] Add CA to system trust store
-- [ ] Create host certificates
+- [ ] Create ssh host certificates
 - [ ] Configure servers' sshd to accept ssh certificates
 
 # Details
