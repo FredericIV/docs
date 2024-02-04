@@ -2,7 +2,7 @@
 title: SSH Certificates
 description: 
 published: true
-date: 2024-02-04T19:36:35.804Z
+date: 2024-02-04T19:39:59.804Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T21:06:14.952Z
@@ -20,6 +20,8 @@ dateCreated: 2024-01-15T21:06:14.952Z
 
 ## Details
 ### CA stood up
+Modern step-ca uses a database for managing provisioners, requiring use of their cli. Instructions for adding OIDC and SSHPOP provisioners will be added at some point.
+
 /etc/step-ca/config/ca.json
 ```json
 {
